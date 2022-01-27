@@ -1,0 +1,77 @@
+server:
+  port: 10880
+dubbo:
+  application:
+    name: tanhua-server
+  registry:
+    address: zookeeper://10.10.20.160:2181
+  consumer:
+    check: false
+# log
+logging:
+  level:
+    root: info
+    com:
+      tanhua: debug
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %msg - %logger{15}%n\'
+tanhua:
+  secret: 76bd425b6f29f7fcc2e0bfc286043df1
+  tokenKey: TOKEN_
+  #将验证码前缀配置
+  redisValidateCodeKeyPrefix: VALIDATECODE_
+  sms:
+    validateCodeTemplateCode: SMS_204761533
+    signName: 传智播客
+    parameterName: code
+    accessKeyId: LTAI5tFipCs5SGtBsyDFTP3S
+    accessKeySecret: edAtD9k8RJUl0Wrg8XW0RI5PZ6JIuK
+  oss:
+    endpoint: http://oss-cn-shenzhen.aliyuncs.com
+    bucketName: mytanhua117
+    url: https://mytanhua117.oss-cn-shenzhen.aliyuncs.com
+    accessKeyId: LTAI5tFipCs5SGtBsyDFTP3S
+    accessKeySecret: edAtD9k8RJUl0Wrg8XW0RI5PZ6JIuK
+  face:
+    appId: 24840642
+    apiKey: aGH99nbLevjqoq9g2sHKI41F
+    secretKey: zeOxO0TvauUc67FpNBoizLDEMoBWzj8z
+  huanxin:
+    url: http://a1.easemob.com/
+    orgName: 1112190901181842
+    appName: tanhua117
+    clientId: YXA69FkTiopiS7WwL3KP0pK_dA
+    clientSecret: YXA6yHtgCqGcBgEpowNOs-V2xufkvJY
+  audio:
+    accessKeyID: LTAI5tLc9B1wDW2s1Kj89Jpy
+    accessKeyecret: mC4O6hRxJ6sj8ofUGJUQ1R5XVt5XYJ
+  voice:
+    appId: 24514332
+    apiKey: kcCGmFjKDd8ZxOZlfWpvudKU
+    secretKey: RwuprQi7Ll4yjxRaGeThWYoS1D1ddK7i
+spring:
+  redis:
+    host: 10.10.20.160
+    port: 6379
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 50MB
+# ===================================================================
+# 分布式文件系统FDFS配置
+# ===================================================================
+fdfs:
+  so-timeout: 1500
+  connect-timeout: 600
+  #缩略图生成参数
+  thumb-image:
+    width: 150
+    height: 150
+  #TrackerList参数,支持多个
+  tracker-list: 10.10.20.160:22122
+  web-server-url: http://10.10.20.160:8888/
+rocketmq:
+  name-server: 10.10.20.160:9876
+  producer:
+    group: tanhua
+    sendMessageTimeout: 10000

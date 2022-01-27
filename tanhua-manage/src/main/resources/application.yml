@@ -1,0 +1,75 @@
+server:
+  port: 18083
+
+#配置redis
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/tanhua-manager?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=false
+    username: root
+    password: root
+  redis:
+    host: 10.10.20.160
+    port: 6379
+dubbo:
+  application:
+    name: tanhua-manage
+  registry:
+    address: zookeeper://10.10.20.160:2181
+  consumer:
+    check: false
+#配置短信平台信息
+tanhua:
+  secret: 76bd425b6f29f7fcc2e0bfc286043df1
+  tokenKey: TOKEN_
+  #将验证码前缀配置
+  redisValidateCodeKeyPrefix: VALIDATECODE_
+  sms:
+    validateCodeTemplateCode: SMS_204761533
+    signName: 传智播客
+    parameterName: code
+    accessKeyId: LTAI5tFipCs5SGtBsyDFTP3S
+    accessKeySecret: edAtD9k8RJUl0Wrg8XW0RI5PZ6JIuK
+  oss:
+    endpoint: http://oss-cn-shenzhen.aliyuncs.com
+    bucketName: mytanhua117
+    url: https://mytanhua117.oss-cn-shenzhen.aliyuncs.com
+    accessKeyId: LTAI5tFipCs5SGtBsyDFTP3S
+    accessKeySecret: edAtD9k8RJUl0Wrg8XW0RI5PZ6JIuK
+  face:
+    appId: 24840642
+    apiKey: aGH99nbLevjqoq9g2sHKI41F
+    secretKey: zeOxO0TvauUc67FpNBoizLDEMoBWzj8z
+  huanxin:
+    url: http://a1.easemob.com/
+    orgName: 1112190901181842
+    appName: tanhua117
+    clientId: YXA69FkTiopiS7WwL3KP0pK_dA
+    clientSecret: YXA6yHtgCqGcBgEpowNOs-V2xufkvJY
+  huawei:
+    username: hw23848243
+    password: aaqq!!
+    project: cn-east-3
+    domain: hw23848243
+    # 图片检测内容 politics：是否涉及政治人物的检测，terrorism：是否包含涉政暴恐元素的检测，porn：是否包含涉黄内容元素的检测，ad：是否包含广告的检测（公测特性），all：包含politics、terrorism和porn三种场景的检测
+    categoriesImage: politics,terrorism,porn
+    # 文字检测内容 politics：涉政，porn：涉黄，ad：广告，abuse：辱骂，contraband：违禁品，flood：灌水
+    categoriesText: politics,porn,ad,abuse,contraband,flood
+    textApiUrl: https://moderation.cn-east-3.myhuaweicloud.com/v1.0/moderation/text
+    imageApiUrl: https://moderation.cn-east-3.myhuaweicloud.com/v1.0/moderation/image/batch
+#mybaits-plus
+mybatis-plus:
+  global-config:
+    db-config:
+      table-prefix: tb_    #数据库表前缀
+      id-type: auto        #数据库表主键的策略
+rocketmq:
+  name-server: 10.10.20.160:9876
+# log
+logging:
+  level:
+    root: info
+    com:
+      tanhua: debug
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %msg - %logger{15}%n\'
